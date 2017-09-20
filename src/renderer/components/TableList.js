@@ -6,14 +6,16 @@ export default class TableList extends Component {
     render() {
         return (
             <div>
+                <h2>TABLES</h2>
                 <ul>
-                    { this.props.tables.map((table, index) => {
+                    { this.props.tables.map((table, index) =>
                         <TableListItem
-                            {...table}
-                            key={index}
-                            onClick={() => this.props.onTableClick(index)}
+                            { ...table }
+                            key={ index }
+                            tableFilter={ this.props.tableFilter }
+                            onClick={ () => this.props.onTableClick(table.id) }
                         />
-                    }) }
+                    ) }
                 </ul>
             </div>
         )
@@ -25,5 +27,6 @@ TableList.PropTypes = {
         id: PropTypes.number.isRequired,
         name: PropTypes.string.isRequired
     }).isRequired).isRequired,
-    onTableClick: PropTypes.func.isRequired
+    onTableClick: PropTypes.func.isRequired,
+    tableFilter: PropTypes.number.isRequired
 }

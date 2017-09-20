@@ -3,8 +3,9 @@ import React, { Component, PropTypes } from 'react'
 export default class TableListItem extends Component {
     render() {
         return (
-            <li>
-                <a href="">{ this.props.name }</a>
+            <li onClick={ this.props.onClick }>
+                { this.props.id === this.props.tableFilter ? '>>' : '' }
+                { this.props.name }
             </li>
         )
     }
@@ -12,5 +13,7 @@ export default class TableListItem extends Component {
 
 TableListItem.PropTypes = {
     id: PropTypes.number.isRequired,
-    name: PropTypes.string.isRequired
+    name: PropTypes.string.isRequired,
+    tableFilter: PropTypes.number.isRequired,
+    onClick: PropTypes.func.isRequired
 }

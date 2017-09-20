@@ -1,33 +1,28 @@
 import { combineReducers } from 'redux'
-import { ADD_TODO, COMPLETE_TODO, SET_VISIBILITY_FILTER, SET_TABLE_FILTER, VisibilityFilters } from './actions'
-const {SHOW_ALL} = VisibilityFilters
+import { ADD_TODO, COMPLETE_TODO, SET_TABLE_FILTER, ADD_TABLE } from './actions'
 
-function visibilityFilter(state = SHOW_ALL, action) {
+const DEFAULT_TABLE = [{
+    id: 0,
+    name: 'MyList'
+}]
+
+function tableFilter(state = 0, action) {
     switch (action.type) {
-        case SET_VISIBILITY_FILTER:
-            return action.filter
+        case SET_TABLE_FILTER:
+            return action.id
         default:
             return state
     }
 }
 
-function tableFilter(state = 0, action) {
-    switch (action.type) {
-        case SET_TABLE_FILTER:
-            return action.index
-        default
-            return state
-    }
-}
-
-function tables(state = [], action) {
+function tables(state = DEFAULT_TABLE, action) {
     switch (action.type) {
         case ADD_TABLE:
             return [
                 ...state,
                 {
-                    id: state[state.length - 1 ].id + 1,
-                    name: action.name
+                    id: state[state.length-1] ? state[state.length-1].id+1 : 0,
+                    name: action.text
                 }
             ]
         default:
@@ -41,16 +36,14 @@ function todos(state = [], action) {
             return [
                 ...state,
                 {
+                    id: state[state.length-1] ? state[state.length-1].id+1 : 0,
                     text: action.text,
+                    table: action.table,
                     completed: false
                 }
             ]
         case COMPLETE_TODO:
-            return [
-                ...state.slice(0, action.index),
-                {...state[action.index], completed: true},
-                ...state.slice(action.index + 1)
-            ]
+            return state.map(v => v.id === action.id ? { ...v, completed: !v.completed } : v)
         default:
             return state
     }
@@ -58,8 +51,8 @@ function todos(state = [], action) {
 
 const todoApp = combineReducers({
     tableFilter,
-    visibilityFilter,
-    todos
+    todos,
+    tables
 })
 
 export default todoApp

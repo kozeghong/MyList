@@ -1,26 +1,20 @@
 export const ADD_TODO = 'ADD_TODO'
 export const COMPLETE_TODO = 'COMPLETE_TODO'
-export const SET_VISIBILITY_FILTER = 'SET_VISIBILITY_FILTER'
 export const SET_TABLE_FILTER = 'SET_TABLE_FILTER'
+export const ADD_TABLE = 'ADD_TABLE'
 
-export const VisibilityFilters = {
-    SHOW_ALL: 'SHOW_ALL',
-    SHOW_COMPLETED: 'SHOW_COMPLETED',
-    SHOW_ACTIVE: 'SHOW_ACTIVE'
+export function addTodo(text, table) {
+    return { type: ADD_TODO, text, table }
 }
 
-export function addTodo(text) {
-    return { type: ADD_TODO, text }
+export function completeTodo(id) {
+    return { type: COMPLETE_TODO, id }
 }
 
-export function completeTodo(index) {
-    return { type: COMPLETE_TODO, index }
+export function addTable(text) {
+    return { type: ADD_TABLE, text }
 }
 
-export function setVisibilityFilter(filter) {
-    return { type: SET_VISIBILITY_FILTER, filter }
-}
-
-export function setTableFilter(index) {
-    return { type: SET_TABLE_FILTER, index }
+export function setTableFilter(id) {
+    return { type: SET_TABLE_FILTER, id }
 }

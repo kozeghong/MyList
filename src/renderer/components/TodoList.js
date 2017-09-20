@@ -4,15 +4,28 @@ import Todo from './Todo'
 export default class TodoList extends Component {
     render() {
         return (
-            <ul>
-                {this.props.todos.map((todo, index) =>
-                    <Todo
-                        {...todo}
-                        key={index}
-                        onClick={() => this.props.onTodoClick(index)}
-                    />
-                )}
-            </ul>
+            <div>
+                <h2>TODO</h2>
+                <ul>
+                    {this.props.todos.filter(todo => !todo.completed).map((todo, index) =>
+                        <Todo
+                            {...todo}
+                            key={index}
+                            onClick={() => this.props.onTodoClick(todo.id)}
+                        />
+                    )}
+                </ul>
+                <h2>COMPLETED</h2>
+                <ul>
+                    {this.props.todos.filter(todo => todo.completed).map((todo, index) =>
+                        <Todo
+                            {...todo}
+                            key={index}
+                            onClick={() => this.props.onTodoClick(todo.id)}
+                        />
+                    )}
+                </ul>
+            </div>
         )
     }
 }
@@ -20,7 +33,9 @@ export default class TodoList extends Component {
 TodoList.PropTypes = {
     onTodoClick: PropTypes.func.isRequired,
     todos: PropTypes.arrayOf(PropTypes.shape({
+        id: PropTypes.number.isRequired,
         text: PropTypes.string.isRequired,
-        completed: PropTypes.bool.isRequired
+        completed: PropTypes.bool.isRequired,
+        table: PropTypes.number.isRequired
     }).isRequired).isRequired
 }

@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from  'react-redux'
-import { addTodo, completeTodo, setVisibilityFilter, VisibilityFilters } from '../actions'
+import { addTodo, completeTodo, addTable, setTableFilter } from '../actions'
 import AddTodo from '../components/AddTodo'
 import TodoList from '../components/TodoList'
 import TableList from '../components/TableList'
@@ -10,12 +10,13 @@ import MainArea from '../components/MainArea'
 
 class App extends Component {
     render() {
-        const {dispatch, visibleTodos, visibilityFilter} = this.props
+        const { dispatch, visibleTodos, tables, tableFilter } = this.props
         return (
             <div>
                 <Sidebar>
                     <TableList
                         tables={ tables }
+                        tableFilter={ tableFilter }
                         onTableClick={ index => dispatch(setTableFilter(index)) }
                     />
                     <TableListAdd
@@ -24,10 +25,10 @@ class App extends Component {
                 </Sidebar>
                 <MainArea>
                     <AddTodo
-                        onAddClick={ text => dispatch(addTodo(text)) }
+                        onAddClick={ text => dispatch(addTodo(text, tableFilter)) }
                     />
                     <TodoList
-                        todos={visibleTodos}
+                        todos={ visibleTodos }
                         onTodoClick={ index => dispatch(completeTodo(index)) }
                     />
                 </MainArea>
@@ -39,30 +40,33 @@ class App extends Component {
 App.propTypes = {
     visibleTodos: PropTypes.arrayOf(PropTypes.shape({
         text: PropTypes.string.isRequired,
+        table: PropTypes.number.isRequired,
         completed: PropTypes.bool.isRequired
     }).isRequired).isRequired,
-    visibilityFilter: PropTypes.oneOf([
-        'SHOW_ALL',
-        'SHOW_COMPLETED',
-        'SHOW_ACTIVE'
-    ]).isRequired
+    tables: PropTypes.arrayOf(PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        name: PropTypes.string.isRequired
+    }).isRequired).isRequired,
+    tableFilter: PropTypes.number.isRequired
 }
 
 function selectTodos(todos, filter) {
-    switch(filter) {
-        case VisibilityFilters.SHOW_ALL:
-            return todos
-        case VisibilityFilters.SHOW_COMPLETED:
-            return todos.filter(todo => todo.completed)
-        case VisibilityFilters.SHOW_ACTIVE:
-            return todos.filter(todo => !todo.completed)
-    }
+    return todos.filter(todo => todo.table === filter)
+    // switch(filter) {
+    //     case VisibilityFilters.SHOW_ALL:
+    //         return todos
+    //     case VisibilityFilters.SHOW_COMPLETED:
+    //         return todos.filter(todo => todo.completed)
+    //     case VisibilityFilters.SHOW_ACTIVE:
+    //         return todos.filter(todo => !todo.completed)
+    // }
 }
 
 function select(state) {
     return {
-        visibleTodos: selectTodos(state.todos, state.visibilityFilter),
-        visibilityFilter: state.visibilityFilter
+        visibleTodos: selectTodos(state.todos, state.tableFilter),
+        tables: state.tables,
+        tableFilter: state.tableFilter
     }
 }
 
