@@ -1,5 +1,5 @@
-import {combineReducers} from 'redux'
-import {ADD_TODO, COMPLETE_TODO, SET_VISIBILITY_FILTER, VisibilityFilters} from './actions'
+import { combineReducers } from 'redux'
+import { ADD_TODO, COMPLETE_TODO, SET_VISIBILITY_FILTER, SET_TABLE_FILTER, VisibilityFilters } from './actions'
 const {SHOW_ALL} = VisibilityFilters
 
 function visibilityFilter(state = SHOW_ALL, action) {
@@ -11,8 +11,32 @@ function visibilityFilter(state = SHOW_ALL, action) {
     }
 }
 
+function tableFilter(state = 0, action) {
+    switch (action.type) {
+        case SET_TABLE_FILTER:
+            return action.index
+        default
+            return state
+    }
+}
+
+function tables(state = [], action) {
+    switch (action.type) {
+        case ADD_TABLE:
+            return [
+                ...state,
+                {
+                    id: state[state.length - 1 ].id + 1,
+                    name: action.name
+                }
+            ]
+        default:
+            return state
+    }
+}
+
 function todos(state = [], action) {
-    switch(action.type) {
+    switch (action.type) {
         case ADD_TODO:
             return [
                 ...state,
@@ -33,6 +57,7 @@ function todos(state = [], action) {
 }
 
 const todoApp = combineReducers({
+    tableFilter,
     visibilityFilter,
     todos
 })

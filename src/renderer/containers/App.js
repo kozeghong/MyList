@@ -1,26 +1,36 @@
-import React, {Component, PropTypes} from 'react'
-import {connect} from  'react-redux'
-import {addTodo, completeTodo, setVisibilityFilter, VisibilityFilters} from '../actions'
+import React, { Component, PropTypes } from 'react'
+import { connect } from  'react-redux'
+import { addTodo, completeTodo, setVisibilityFilter, VisibilityFilters } from '../actions'
 import AddTodo from '../components/AddTodo'
 import TodoList from '../components/TodoList'
-import Footer from '../components/Footer'
+import TableList from '../components/TableList'
+import TableListAdd from '../components/TableListAdd'
+import Sidebar from '../components/Sidebar'
+import MainArea from '../components/MainArea'
 
 class App extends Component {
     render() {
         const {dispatch, visibleTodos, visibilityFilter} = this.props
         return (
             <div>
-                <AddTodo
-                    onAddClick={text => dispatch(addTodo(text))}
-                />
-                <TodoList
-                    todos={visibleTodos}
-                    onTodoClick={index => dispatch(completeTodo(index))}
-                />
-                <Footer
-                    filter={visibilityFilter}
-                    onFilterChange={nextFilter => dispatch(setVisibilityFilter(nextFilter))}
-                />
+                <Sidebar>
+                    <TableList
+                        tables={ tables }
+                        onTableClick={ index => dispatch(setTableFilter(index)) }
+                    />
+                    <TableListAdd
+                        onAddClick={ text => dispatch(addTable(text)) }
+                    />
+                </Sidebar>
+                <MainArea>
+                    <AddTodo
+                        onAddClick={ text => dispatch(addTodo(text)) }
+                    />
+                    <TodoList
+                        todos={visibleTodos}
+                        onTodoClick={ index => dispatch(completeTodo(index)) }
+                    />
+                </MainArea>
             </div>
         )
     }
