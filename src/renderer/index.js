@@ -6,9 +6,6 @@ import reducer from './reducers'
 import App from './containers/App'
 
 const store = createStore(reducer)
-const rootElem = document.createElement('div')
-rootElem.id = 'root'
-document.body.appendChild(rootElem)
 const elem = document.getElementById('root')
 
 render(
