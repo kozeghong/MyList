@@ -13,6 +13,7 @@
     "dist": "electron-builder"
   },
   "dependencies": {
+    "feather-icons": "^3.2.2",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-redux": "^5.0.6",

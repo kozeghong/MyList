@@ -1,0 +1,44 @@
+.TableListItem {
+    position: relative;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-size: 1.8rem;
+    padding: 1.8rem 0.8rem;
+
+    svg {
+        float: left;
+        position: relative;
+        overflow: hidden;
+        display: block;
+        height: 2.2rem;
+        width: 2.2rem;
+        margin-right: 1rem;
+    }
+    span {
+        float: left;
+        position: relative;
+        overflow: hidden;
+        display: block;
+        padding: 0.2rem 0;
+    }
+
+}
+
+.normal {
+    composes: TableListItem;
+    color: #333;
+}
+
+.normal:hover {
+    background: #f8f8f8;
+    cursor: default;
+}
+
+.active {
+    composes: TableListItem;
+    background: #419fd9;
+    color: #fff;
+    cursor: default;
+}
+

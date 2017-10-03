@@ -40,7 +40,7 @@ const renderer = {
             title: 'MyList',
             Chunks: ['renderer'],
             filename: 'index.html',
-            template: path.resolve(__dirname, 'src/index.html')
+            template: path.resolve(__dirname, 'src/renderer/index.html')
         })
     ],
 }

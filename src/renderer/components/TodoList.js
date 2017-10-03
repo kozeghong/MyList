@@ -12,7 +12,6 @@ export default class TodoList extends Component {
                             {...todo}
                             key={index}
                             onClick={() => this.props.onTodoClick(todo.id)}
-                            styleLi={ styles.normal }
                         />
                     )}
                 </ul>
@@ -23,7 +22,6 @@ export default class TodoList extends Component {
                             {...todo}
                             key={index}
                             onClick={() => this.props.onTodoClick(todo.id)}
-                            styleLi={ styles.completed }
                         />
                     )}
                 </ul>

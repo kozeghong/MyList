@@ -1,0 +1,45 @@
+.Todo {
+    position: relative;
+    overflow: hidden;
+    box-sizing: border-box;
+    width: 100%;
+    font-size: 1.6rem;
+    padding: 0.9rem 1rem 0.8rem;
+    margin: 0.5rem 0;
+    border-radius: 0.3rem;
+    box-shadow: 1px 1px 1px 0px #eee;
+
+    svg {
+        float: left;
+        position: relative;
+        overflow: hidden;
+        display: block;
+        height: 2rem;
+        width: 2rem;
+        margin-right: 1rem;
+    }
+    span {
+        float: left;
+        position: relative;
+        overflow: hidden;
+        display: block;
+        padding: 0.2rem 0;
+    }
+}
+
+.normal {
+    composes: Todo;
+    background: #fff;
+    border: 0.1rem solid #fff;
+    color: #666;
+    cursor: pointer;
+}
+
+.completed {
+    composes: Todo;
+    background: #fcfcfc;
+    border: 0.1rem solid #fcfcfc;
+    color: #999;
+    text-decoration: line-through;
+    cursor: default;
+}

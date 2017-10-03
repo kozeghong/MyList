@@ -11,7 +11,6 @@ export default class TableList extends Component {
                     { this.props.tables.map((table, index) =>
                         <TableListItem
                             { ...table }
-                            styleLi={ index === this.props.tableFilter ? styles.active : styles.normal }
                             key={ index }
                             tableFilter={ this.props.tableFilter }
                             onClick={ () => this.props.onTableClick(table.id) }
