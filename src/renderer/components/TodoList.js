@@ -1,17 +1,18 @@
 import React, { Component, PropTypes } from 'react'
 import Todo from './Todo'
+import styles from './todoList.scss'
 
 export default class TodoList extends Component {
     render() {
         return (
-            <div>
-                <h2>TODO</h2>
+            <div className={ styles.TodoList }>
                 <ul>
                     {this.props.todos.filter(todo => !todo.completed).map((todo, index) =>
                         <Todo
                             {...todo}
                             key={index}
                             onClick={() => this.props.onTodoClick(todo.id)}
+                            styleLi={ styles.normal }
                         />
                     )}
                 </ul>
@@ -22,6 +23,7 @@ export default class TodoList extends Component {
                             {...todo}
                             key={index}
                             onClick={() => this.props.onTodoClick(todo.id)}
+                            styleLi={ styles.completed }
                         />
                     )}
                 </ul>

@@ -19,7 +19,7 @@ const renderer = {
     module: {
         rules: [{
             test: /\.js$/,
-            exclude: /node_modules/,
+            exclude: path.resolve(__dirname, 'node_modules/'),
             loader: 'babel-loader',
             query: {
                 plugins: ['transform-runtime'],
@@ -27,11 +27,11 @@ const renderer = {
             }
         }, {
             test: /\.scss$/,
-            exclude: path.resolve(__dirname, 'src/styles'),
+            exclude: path.resolve(__dirname, 'src/renderer/styles/'),
             loader: "style-loader!css-loader?modules&localIdentName=[name]__[local]-[hash:base64:5]!sass-loader?sourceMap=true"
         }, {
             test: /\.scss$/,
-            include: path.resolve(__dirname, 'src/styles'),
+            include: path.resolve(__dirname, 'src/renderer/styles/'),
             loader: 'style-loader!css-loader!sass-loader?sourceMap=true'
         }]
     },

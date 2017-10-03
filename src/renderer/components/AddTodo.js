@@ -1,12 +1,17 @@
 import React, { Component, PropTypes } from 'react'
+import styles from './addTodo.scss'
 
 export default class AddTodo extends Component {
     render() {
         return (
-            <div>
-                <input type='text' ref='input' onKeyUp={ e => this.onInputEnter(e) } />
+            <div className={ styles.AddTodo }>
+                <input 
+                    type='text' ref='input'
+                    onKeyUp={ e => this.onInputEnter(e) }
+                    placeholder='Add New Item'
+                />
                 <button onClick={ e => this.handleClick(e) }>
-                    Add
+                    +
                 </button>
             </div>
         )
@@ -14,7 +19,7 @@ export default class AddTodo extends Component {
     handleClick(e) {
         const node = this.refs.input
         const text = node.value.trim()
-        this.props.onAddClick(text)
+        if (text) this.props.onAddClick(text)
         node.value = ''
     };
     onInputEnter(e) {

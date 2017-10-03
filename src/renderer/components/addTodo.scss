@@ -1,0 +1,49 @@
+.AddTodo {
+    position: absolute;
+    overflow: hidden;
+    background: #f7f7f7;
+    z-index: 65535;
+    box-sizing: border-box;
+    top: 0;
+    width: 100%;
+    padding: 1.2rem 0.8rem;
+
+    input {
+        display: block;
+        background: #eee;
+        color: #999;
+        font-size: 1.6rem;
+        box-sizing: border-box;
+        width: 100%;
+        padding: 0.8rem 1.2rem;
+        border-radius: 3px;
+        border: 0.2rem solid #eee;
+        transition-duration: 0.1s;
+    }
+    input::-webkit-input-placeholder {
+        color: #999;
+    }
+    input:focus {
+        background: #fff;
+        border: 0.2rem solid #419fd9;
+    }
+    button {
+        position: absolute;
+        top: 1.2rem;
+        right: 0.8rem;
+        z-index: 65535;
+        background: #eee;
+        color: #666;
+        font-size: 1.6rem;
+        padding: 0.7rem 1.2rem 0.9rem;
+        border-radius: 3px;
+        border: 0.2rem solid #eee;
+        cursor: pointer;
+        transition-duration: 0.1s;
+    }
+    input:focus+button {
+        background: #419fd9;
+        border: 0.2rem solid #419fd9;
+        color: #fff;
+    }
+}

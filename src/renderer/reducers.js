@@ -30,7 +30,7 @@ function tables(state = DEFAULT_TABLE, action) {
     }
 }
 
-function todos(state = [], action) {
+function todos(state = [{id: 0, text: 'test', table: 0, completed: false}], action) {
     switch (action.type) {
         case ADD_TODO:
             return [

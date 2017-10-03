@@ -5,11 +5,9 @@ export default class Todo extends Component {
         return (
             <li
                 onClick={ this.props.onClick }
-                style={{
-                    textDecoration: this.props.completed ? 'line-through' : 'none',
-                    cursor: this.props.completed ? 'default' : 'pointer'
-                }}
+                className={ this.props.styleLi }
             >
+                { this.props.completed ? '' : ' ' }
                 { this.props.text }
             </li>
         )
@@ -21,5 +19,6 @@ Todo.propTypes = {
     id: PropTypes.number.isRequired,
     text: PropTypes.string.isRequired,
     completed: PropTypes.bool.isRequired,
-    table: PropTypes.number.isRequired
+    table: PropTypes.number.isRequired,
+    styleLi: PropTypes.string.isRequired
 }

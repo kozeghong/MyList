@@ -7,12 +7,13 @@ import TableList from '../components/TableList'
 import TableListAdd from '../components/TableListAdd'
 import Sidebar from '../components/Sidebar'
 import MainArea from '../components/MainArea'
+import '../styles/app.scss'
 
 class App extends Component {
     render() {
         const { dispatch, visibleTodos, tables, tableFilter } = this.props
         return (
-            <div>
+            <div className='container'>
                 <Sidebar>
                     <TableList
                         tables={ tables }

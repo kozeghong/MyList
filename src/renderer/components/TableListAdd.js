@@ -1,10 +1,11 @@
 import React, { Component, PropTypes } from 'react'
+import styles from './tableListAdd.scss'
 
 export default class TableListAdd extends Component {
     render() {
         return (
-            <div>
-                <input type='text' ref='input' onKeyUp={ e => this.onInputEnter(e) } />
+            <div className= { styles.TableListAdd }>
+                <input type='text' ref='input' placeholder='Add New List' onKeyUp={ e => this.onInputEnter(e) } />
                 <button onClick={ e => this.handleClick(e) }> + </button>
             </div>
         )
@@ -15,7 +16,7 @@ export default class TableListAdd extends Component {
     handleClick(e) {
         const node = this.refs.input
         const text = node.value.trim()
-        this.props.onAddClick(text)
+        if (text) this.props.onAddClick(text)
         node.value = ''
     }
 }

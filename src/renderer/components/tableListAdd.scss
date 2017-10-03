@@ -1,0 +1,44 @@
+.TableListAdd {
+    position: fixed;
+    bottom: 0;
+    padding: 0.5rem;
+    background: #fff;
+    z-index: 65535;
+
+    input {
+        float: left;
+        background: #eee;
+        color: #999;
+        font-size: 1.6rem;
+        width: 16rem;
+        padding: 0.5rem 1rem;
+        margin: 0.3rem;
+        border-radius: 3px;
+        border: 0.2rem solid #eee;
+        transition-duration: 0.2s;
+    }
+    input::-webkit-input-placeholder {
+        color: #999;
+    }
+    input:focus {
+        background: #fff;
+        border: 0.2rem solid #419fd9;
+    }
+    button {
+        float: left;
+        background: #eee;
+        color: #666;
+        font-size: 1.6rem;
+        padding: 0.4rem 1rem 0.6rem;
+        margin: 0.3rem;
+        border-radius: 3px;
+        border: 0.2rem solid #eee;
+        cursor: pointer;
+        transition-duration: 0.2s;
+    }
+    input:focus+button {
+        background: #419fd9;
+        border: 0.2rem solid #419fd9;
+        color: #fff;
+    }
+}
