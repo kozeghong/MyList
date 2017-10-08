@@ -10,7 +10,6 @@ const renderer = {
         filename: "[name].js"
     },
     target: 'electron-renderer',
-    devtool: 'inline-source-map',
     devServer: {
         contentBase: path.resolve(__dirname, 'app'),
         port: 9080,
@@ -54,7 +53,10 @@ const main = {
         filename: "[name].js"
     },
     target: "electron-main",
-    devtool: 'inline-source-map',
+    node: {
+        __dirname: false,
+        __filename: false,
+    },
     module: {
         rules: [{
             test: /\.js$/,

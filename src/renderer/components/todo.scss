@@ -40,6 +40,10 @@
     background: #fcfcfc;
     border: 0.1rem solid #fcfcfc;
     color: #999;
-    text-decoration: line-through;
     cursor: default;
+    
+    span {
+        text-decoration: line-through;
+    }
 }
+

@@ -9,7 +9,7 @@ function createWindow () {
 
     let url = isDevelopment
         ? 'http://localhost:9080'
-        : `file://${__dirname}/app/index.html`
+        : `file://${__dirname}/index.html`
 
     // Open the DevTools.
     if (isDevelopment) mainWindow.webContents.openDevTools()
