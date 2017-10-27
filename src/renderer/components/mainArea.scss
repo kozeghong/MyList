@@ -1,6 +1,11 @@
 .MainArea {
+    order: 1;
+    flex: 1 1 auto;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: stretch;
     position: relative;
     overflow: hidden;
     background: #f7f7f7;
-    height: 100%;
 }

@@ -1,9 +1,10 @@
 .TodoList {
+    order: 2;
+    flex: auto;
     position: relative;
     overflow: auto;
     box-sizing: border-box;
-    padding: 5.7rem 0.8rem 0.3rem;
-    width: 100%;
+    padding: 0 0.8rem 1.2rem;
     height: 100%;
 
     h2 {

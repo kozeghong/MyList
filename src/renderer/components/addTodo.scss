@@ -1,11 +1,10 @@
 .AddTodo {
-    position: absolute;
+    order: 1;
+    flex: none;
+    position: relative;
     overflow: hidden;
     background: #f7f7f7;
     z-index: 65535;
-    box-sizing: border-box;
-    top: 0;
-    width: 100%;
     padding: 1.2rem 0.8rem;
 
     input {

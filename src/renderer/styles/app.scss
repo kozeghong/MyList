@@ -15,6 +15,13 @@ body, #root, .container {
     height: 100%;
 }
 
+.container {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    align-items: stretch;
+}
+
 input:focus,button:focus {
     outline: none;
 } 

@@ -60,7 +60,7 @@ const main = {
     module: {
         rules: [{
             test: /\.js$/,
-            exclude: /node_modules/,
+            exclude: path.resolve(__dirname, 'node_modules/'),
             loader: 'babel-loader',
             query: {
                 plugins: ['transform-runtime'],

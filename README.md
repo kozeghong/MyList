@@ -9,6 +9,7 @@ Including:
   * Redux
   * Webpack
   * ES6
+  * CSS Modules
   * SCSS
   * Yarn
 
