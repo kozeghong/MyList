@@ -22,10 +22,10 @@ export default class AddTodo extends Component {
         const text = node.value.trim()
         if (text) this.props.onAddClick(text)
         node.value = ''
-    };
+    }
     onInputEnter(e) {
         e.keyCode === 13 && this.handleClick(e)
-    };
+    }
 }
 
 AddTodo.propTypes = {

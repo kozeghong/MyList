@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux'
-import { ADD_TODO, COMPLETE_TODO, SET_TABLE_FILTER, ADD_TABLE } from './actions'
+import { ADD_TODO, COMPLETE_TODO, SET_TABLE_FILTER, ADD_TABLE, EDIT_TABLE } from './actions'
 
 const DEFAULT_TABLE = [{
     id: 0,
@@ -25,6 +25,8 @@ function tables(state = DEFAULT_TABLE, action) {
                     name: action.text
                 }
             ]
+        case EDIT_TABLE:
+            return state.map(v => v.id === action.id ? { ...v, name: action.text } : v)
         default:
             return state
     }

@@ -15,6 +15,7 @@ export default class TableList extends Component {
                             key={ index }
                             tableFilter={ this.props.tableFilter }
                             onClick={ () => this.props.onTableClick(table.id) }
+                            onEdit={ (text) => this.props.onTableEdit(table.id, text) }
                         />
                     ) }
                 </ul>
@@ -29,5 +30,6 @@ TableList.PropTypes = {
         name: PropTypes.string.isRequired
     }).isRequired).isRequired,
     onTableClick: PropTypes.func.isRequired,
+    onTableEdit: PropTypes.func.isRequired,
     tableFilter: PropTypes.number.isRequired
 }

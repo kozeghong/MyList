@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types';
 import { connect } from  'react-redux'
-import { addTodo, completeTodo, addTable, setTableFilter } from '../actions'
+import { addTodo, completeTodo, addTable, editTable, setTableFilter } from '../actions'
 import AddTodo from '../components/AddTodo'
 import TodoList from '../components/TodoList'
 import TableList from '../components/TableList'
@@ -20,6 +20,7 @@ class App extends Component {
                         tables={ tables }
                         tableFilter={ tableFilter }
                         onTableClick={ index => dispatch(setTableFilter(index)) }
+                        onTableEdit={ (id, text) => dispatch(editTable(id, text)) }
                     />
                     <TableListAdd
                         onAddClick={ text => dispatch(addTable(text)) }
