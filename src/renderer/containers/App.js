@@ -13,26 +13,27 @@ import '../styles/app.scss'
 class App extends Component {
     render() {
         const { dispatch, visibleTodos, tables, tableFilter } = this.props
+        const { onTableClick, onTableEdit, onTableAddClick, onTodoAddClick, onTodoClick } = this.props
         return (
             <div className='container'>
                 <Sidebar>
                     <TableList
                         tables={ tables }
                         tableFilter={ tableFilter }
-                        onTableClick={ index => dispatch(setTableFilter(index)) }
-                        onTableEdit={ (id, text) => dispatch(editTable(id, text)) }
+                        onTableClick={ onTableClick }
+                        onTableEdit={ onTableEdit }
                     />
                     <TableListAdd
-                        onAddClick={ text => dispatch(addTable(text)) }
+                        onAddClick={ onTableAddClick }
                     />
                 </Sidebar>
                 <MainArea>
                     <AddTodo
-                        onAddClick={ text => dispatch(addTodo(text, tableFilter)) }
+                        onAddClick={ onTodoAddClick(tableFilter) }
                     />
                     <TodoList
                         todos={ visibleTodos }
-                        onTodoClick={ index => dispatch(completeTodo(index)) }
+                        onTodoClick={ onTodoClick }
                     />
                 </MainArea>
             </div>
@@ -55,17 +56,9 @@ App.propTypes = {
 
 function selectTodos(todos, filter) {
     return todos.filter(todo => todo.table === filter)
-    // switch(filter) {
-    //     case VisibilityFilters.SHOW_ALL:
-    //         return todos
-    //     case VisibilityFilters.SHOW_COMPLETED:
-    //         return todos.filter(todo => todo.completed)
-    //     case VisibilityFilters.SHOW_ACTIVE:
-    //         return todos.filter(todo => !todo.completed)
-    // }
 }
 
-function select(state) {
+const mapStateToProps = (state) => {
     return {
         visibleTodos: selectTodos(state.todos, state.tableFilter),
         tables: state.tables,
@@ -73,4 +66,14 @@ function select(state) {
     }
 }
 
-export default connect(select)(App)
+const mapDispatchToProps = (dispatch) => {
+    return {
+        onTableClick: (index) => dispatch(setTableFilter(index)),
+        onTableEdit:  (id, text) => dispatch(editTable(id, text)),
+        onTableAddClick: (text) => dispatch(addTable(text)),
+        onTodoAddClick: (tableFilter) => (text) => dispatch(addTodo(text, tableFilter)),
+        onTodoClick: (index) => dispatch(completeTodo(index))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App)
