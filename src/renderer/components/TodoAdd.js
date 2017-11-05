@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types';
-import styles from './addTodo.scss'
+import styles from './todoAdd.scss'
 
-export default class AddTodo extends Component {
+export default class TodoAdd extends Component {
     render() {
         return (
-            <div className={ styles.AddTodo }>
+            <div className={ styles.TodoAdd }>
                 <input 
                     type='text' ref='input'
                     onKeyUp={ e => this.onInputEnter(e) }
@@ -28,6 +28,6 @@ export default class AddTodo extends Component {
     }
 }
 
-AddTodo.propTypes = {
+TodoAdd.propTypes = {
     onAddClick: PropTypes.func.isRequired
 }

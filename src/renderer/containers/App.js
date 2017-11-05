@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types';
 import { connect } from  'react-redux'
 import { addTodo, completeTodo, addTable, editTable, setTableFilter } from '../actions'
-import AddTodo from '../components/AddTodo'
+import TodoAdd from '../components/TodoAdd'
 import TodoList from '../components/TodoList'
 import TableList from '../components/TableList'
 import TableListAdd from '../components/TableListAdd'
@@ -28,7 +28,7 @@ class App extends Component {
                     />
                 </Sidebar>
                 <MainArea>
-                    <AddTodo
+                    <TodoAdd
                         onAddClick={ onTodoAddClick(tableFilter) }
                     />
                     <TodoList
