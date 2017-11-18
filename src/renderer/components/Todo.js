@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types';
-import feather from 'feather-icons'
+import PropTypes from 'prop-types'
+import SvgIcon from './SvgIcon'
 import styles from './todo.scss'
 
 export default class Todo extends Component {
@@ -10,22 +10,13 @@ export default class Todo extends Component {
                 onClick={ this.props.onClick }
                 className={ this.props.completed ? styles.completed : styles.normal }
             >
-                <svg 
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    dangerouslySetInnerHTML={{__html: this.iconCheck()}}
-                />
+                <SvgIcon icon={ this.iconCheck() } />
                 <span>{ this.props.text }</span>
             </li>
         )
     }
     iconCheck() {
-        return this.props.completed ? feather.icons['check-square'] : feather.icons['square']
+        return this.props.completed ? 'check-square' : 'square'
     }
 }
 

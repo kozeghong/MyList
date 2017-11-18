@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types'
 import styles from './tableListAdd.scss'
 
 export default class TableListAdd extends Component {
