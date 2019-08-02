@@ -5,7 +5,13 @@ const isDevelopment = process.env.NODE_ENV !== 'production'
 let mainWindow
 
 function createWindow () {
-    mainWindow = new BrowserWindow({width: 800, height: 600})
+    mainWindow = new BrowserWindow({
+        width: 800, 
+        height: 600,
+        webPreferences: {
+            nodeIntegration: true
+        }
+    })
 
     let url = isDevelopment
         ? 'http://localhost:9080'

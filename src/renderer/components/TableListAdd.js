@@ -22,6 +22,6 @@ export default class TableListAdd extends Component {
     }
 }
 
-TableListAdd.PropTypes = {
+TableListAdd.propTypes = {
     onAddClick: PropTypes.func.isRequired
 }

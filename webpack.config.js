@@ -18,20 +18,49 @@ const renderer = {
     module: {
         rules: [{
             test: /\.js$/,
+            use: [
+                {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ['@babel/preset-env', '@babel/preset-react'],
+                        plugins: ['@babel/plugin-transform-runtime']
+                    }
+                }
+            ],
             exclude: path.resolve(__dirname, 'node_modules/'),
-            loader: 'babel-loader',
-            query: {
-                plugins: ['transform-runtime'],
-                presets: ['env', 'react', 'stage-2']
-            }
         }, {
             test: /\.scss$/,
+            use: [
+                'style-loader',
+                {
+                    loader: 'css-loader',
+                    options: {
+                        modules: {
+                            localIdentName: '[name]__[local]-[hash:base64:5]'
+                        }
+                    }
+                },
+                {
+                    loader: 'sass-loader',
+                    options: {
+                        sourceMap: true
+                    }
+                }
+            ],
             exclude: path.resolve(__dirname, 'src/renderer/styles/'),
-            loader: "style-loader!css-loader?modules&localIdentName=[name]__[local]-[hash:base64:5]!sass-loader?sourceMap=true"
         }, {
             test: /\.scss$/,
+            use: [
+                'style-loader',
+                'css-loader',
+                {
+                    loader: 'sass-loader',
+                    options: {
+                        sourceMap: true
+                    }
+                }
+            ],
             include: path.resolve(__dirname, 'src/renderer/styles/'),
-            loader: 'style-loader!css-loader!sass-loader?sourceMap=true'
         }]
     },
     plugins: [
@@ -60,12 +89,16 @@ const main = {
     module: {
         rules: [{
             test: /\.js$/,
+            use: [
+                {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ['@babel/preset-env'],
+                        plugins: ['@babel/plugin-transform-runtime']
+                    }
+                }
+            ],
             exclude: path.resolve(__dirname, 'node_modules/'),
-            loader: 'babel-loader',
-            query: {
-                plugins: ['transform-runtime'],
-                presets: ['env', 'stage-2']
-            }
         }]
     },
 }

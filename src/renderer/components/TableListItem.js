@@ -56,7 +56,7 @@ export default class TableListItem extends Component {
     }
 }
 
-TableListItem.PropTypes = {
+TableListItem.propTypes = {
     id: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
     tableFilter: PropTypes.number.isRequired,

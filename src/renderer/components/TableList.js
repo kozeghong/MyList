@@ -24,7 +24,7 @@ export default class TableList extends Component {
     }
 }
 
-TableList.PropTypes = {
+TableList.propTypes = {
     tables: PropTypes.arrayOf(PropTypes.shape({
         id: PropTypes.number.isRequired,
         name: PropTypes.string.isRequired

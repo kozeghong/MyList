@@ -11,7 +11,6 @@ Including:
   * ES6
   * CSS Modules
   * SCSS
-  * Yarn
 
 ## Screenshot
 
@@ -20,17 +19,17 @@ Including:
 ## Build & Run
 
 ```bash
-yarn build:dist
+npm run build:dist
 ```
 
 ```bash
-yarn start
+npm start
 ```
 
 ## Dev
 
 ```bash
-yarn build:dev
-yarn run dev-server
-yarn start
+npm run build:dev
+npm run dev-server
+npm start
 ```
