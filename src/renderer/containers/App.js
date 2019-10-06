@@ -1,13 +1,15 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { connect } from  'react-redux'
+import { connect } from 'react-redux'
 import { addTodo, completeTodo, addTable, editTable, setTableFilter } from '../actions'
 import TodoAdd from '../components/TodoAdd'
 import TodoList from '../components/TodoList'
+import TodoEdit from '../components/TodoEdit'
 import TableList from '../components/TableList'
 import TableListAdd from '../components/TableListAdd'
 import Sidebar from '../components/Sidebar'
 import MainArea from '../components/MainArea'
+import { selectTodos } from '../selectors'
 import '../styles/app.scss'
 
 class App extends Component {
@@ -18,22 +20,22 @@ class App extends Component {
             <div className='container'>
                 <Sidebar>
                     <TableList
-                        tables={ tables }
-                        tableFilter={ tableFilter }
-                        onTableClick={ onTableClick }
-                        onTableEdit={ onTableEdit }
+                        tables={tables}
+                        tableFilter={tableFilter}
+                        onTableClick={onTableClick}
+                        onTableEdit={onTableEdit}
                     />
                     <TableListAdd
-                        onAddClick={ onTableAddClick }
+                        onAddClick={onTableAddClick}
                     />
                 </Sidebar>
                 <MainArea>
                     <TodoAdd
-                        onAddClick={ onTodoAddClick(tableFilter) }
+                        onAddClick={onTodoAddClick(tableFilter)}
                     />
                     <TodoList
-                        todos={ visibleTodos }
-                        onTodoClick={ onTodoClick }
+                        todos={visibleTodos}
+                        onTodoClick={onTodoClick}
                     />
                 </MainArea>
             </div>
@@ -54,13 +56,9 @@ App.propTypes = {
     tableFilter: PropTypes.number.isRequired
 }
 
-function selectTodos(todos, filter) {
-    return todos.filter(todo => todo.table === filter)
-}
-
 const mapStateToProps = (state) => {
     return {
-        visibleTodos: selectTodos(state.todos, state.tableFilter),
+        visibleTodos: selectTodos(state),
         tables: state.tables,
         tableFilter: state.tableFilter
     }
@@ -69,7 +67,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         onTableClick: (index) => dispatch(setTableFilter(index)),
-        onTableEdit:  (id, text) => dispatch(editTable(id, text)),
+        onTableEdit: (id, text) => dispatch(editTable(id, text)),
         onTableAddClick: (text) => dispatch(addTable(text)),
         onTodoAddClick: (tableFilter) => (text) => dispatch(addTodo(text, tableFilter)),
         onTodoClick: (index) => dispatch(completeTodo(index))
